@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+
+	<!-- BEGIN DASHBOARD COMPOSITION -->
+	<ui:composition>
+		<h:form id="formDialog">
+			<!-- BEGIN OF NEW PRODUCT DIALOG -->
+
+			<p:dialog header="Novo Produto" widgetVar="novoProdutoDialog"
+				modal="true" resizable="false" draggable="true">
+				<p:panelGrid columns="2">
+
+					<p:outputLabel value="Nome" for="novoNome" />
+					<p:inputText id="novoNome" maxlength="50"
+						placeholder="Nome do Produto"
+						value="#{productController.product.name}" />
+
+					<p:outputLabel id="novaDescricao" value="Descrição" />
+					<p:inputTextarea rows="5" cols="30"
+						value="#{productController.product.description}" queryDelay="750"
+						minQueryLength="4" />
+
+				</p:panelGrid>
+
+				<p:commandButton id="novoProduto" value="Salvar" icon="ui-icon-disk"
+					action="#{productController.create}"
+					oncomplete="PF('novoProdutoDialog').hide()">
+				</p:commandButton>
+			</p:dialog>
+			<!-- END OF NEW PRODUCT DIALOG -->
+			
+			<!-- BEGIN OF EDIT PRODUCT DIALOG -->
+ 			<p:dialog id="editProductDialog" header="Editar Produto"
+ 				widgetVar="editProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
+ 				<p:panelGrid columns="2">
+
+ 					<p:inputText value="#{productController.productSelect.id}" for="id" rendered="false"/>
+ 					
+ 					<p:outputLabel value="Nome" for="editNome" />
+ 					<p:inputText id="editNome" maxlength="50"
+ 						placeholder="Nome do Produto"
+ 						value="#{productController.productSelect.name}" />
+ 
+ 					<p:outputLabel id="editDescription" value="Descrição" />
+ 					<p:inputTextarea rows="5" cols="30"
+ 						value="#{productController.productSelect.description}" queryDelay="750"
+ 						minQueryLength="4" />
+ 
+ 				</p:panelGrid>
+  
+ 				<p:commandButton id="editProduct" value="Salvar" icon="ui-icon-disk"
+ 					action="#{productController.editar}"
+ 					oncomplete="PF('editProductDialog').hide()" update=":formDashboard">
+ 					
+ 					<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.product}"/>
+ 				</p:commandButton>
+ 			</p:dialog>
+ 			<!-- END OF EDIT PRODUCT DIALOG -->
+ 			
+ 			<!-- BEGIN OF DELETE PRODUCT DIALOG -->
+ 			<p:dialog id="deleteProductDialog" header="Apagar Produto"
+ 				widgetVar="deleteProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
+ 				<p:panelGrid columns="2">
+ 					
+ 					<p:outputLabel value="#{productController.productSelect.name}" />
+ 					<p:outputLabel value="#{productController.productSelect.description}" />
+ 	
+ 				</p:panelGrid>
+  
+ 				<p:commandButton id="deleteProduct" value="Apagar" icon="ui-icon-disk"
+ 					action="#{productController.delete}"
+ 					oncomplete="PF('deleteProductDialog').hide()" update=":formDashboard">
+ 					<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.product}"/>
+ 				</p:commandButton>
+ 				
+ 			</p:dialog>
+ 			<!-- END OF DELETE PRODUCT DIALOG -->
+			
+		</h:form>
+	</ui:composition>
+	<!-- END DASHBOARD COMPOSITION  -->
+</h:body>
+</html>

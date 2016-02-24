@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+	<title>SCREAM - SIGN UP</title>
+</h:head>
+
+<h:body>
+	<p:growl id="mensagens" autoUpdate="true" showDetail="true" />
+	<h:form id="formularioLogin" styleClass="center-hv">
+		<fieldset>
+			<legend>SIGN UP</legend>
+			<h:panelGrid columns="1" cellpadding="1">
+
+				<p:outputLabel for="nome" value="Name" />
+				<p:inputText id="nome" required="true" size="35"
+					value="#{loginController.userAccount.nome}" />
+
+				<p:outputLabel for="email" value="E-mail" />
+				<p:inputText id="email" required="true" size="35"
+					value="#{loginController.userAccount.email}" />
+
+				<p:outputLabel for="usuario" value="Login" />
+				<p:inputText id="usuario" required="true" size="35"
+					value="#{loginController.userAccount.usuario}" />
+
+				<p:outputLabel for="senha" value="Password" />
+				<p:password id="senha" required="true" size="35"
+					value="#{loginController.userAccount.senha}" />
+
+				<p:outputLabel for="confirmarsenha" value="Confirm Password" />
+				<p:password id="confirmarsenha" required="true" size="35"
+					value="#{loginController.confirPass}" />
+
+				<h:panelGrid styleClass="pgregistro" columns="2" style="float: right">
+					<p:commandButton id="salvar" value="Confirm" ajax="false"
+						action="#{loginController.create}" />
+					<p:button value="Cancel" outcome="/login" />
+				</h:panelGrid>
+			</h:panelGrid>
+		</fieldset>
+	</h:form>
+	<p:graphicImage id="logo" library="imagens" name="LogoScream.png" />
+</h:body>
+</html>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+
+	<!-- BEGIN DASHBOARD COMPOSITION -->
+	<ui:composition>
+		<h:form id="formDashboard">
+		
+		<p:growl id="message" showDetail="true" />
+		
+			<h:panelGrid columns="5"
+				columnClasses="dashbd-product-project, dashbd-alerts, dashbd-sprint-release-info,
+	dashbd-gamification-info, dashbd-team-member-info">
+
+				<!-- BEGIN OF PRODUCT AND PROJECT TREATMENT -->
+				<h:panelGrid columns="2">
+					<!-- BEGIN OF PRODUCT SELECTORS -->
+					<h:outputText value="PRODUCT" />
+					<h:outputText />
+					<h:selectOneMenu id="product" value="#{productController.product}"
+						converter="#{productConverter}" style="width:145px">
+						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}"
+							noSelectionOption="true" />
+						<f:selectItems value="#{productController.listProduto}"
+							var="produtos" itemValue="#{produtos}"
+							itemLabel="#{produtos.name}" />
+					</h:selectOneMenu>
+					
+					<h:panelGrid columns="3">
+						<!-- BUTTON NEW PRODUCT -->
+						<p:commandButton icon="icon-plus"
+							onclick="PF('novoProdutoDialog').show()" />
+							
+						<!-- BUTTON EDIT PRODUCT -->
+						<p:commandButton icon="icon-edit"
+							oncomplete="PF('editProductDialog').show()" update=":formDialog"
+							action="#{productController.keepProduct()}">
+							<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.productSelect}"	for="productSelected" />
+						</p:commandButton>
+						
+						<!-- BUTTON DELETE PRODUCT -->
+						<p:commandButton icon="icon-less" oncomplete="PF('deleteProductDialog').show()" update=":formDialog"
+							action="#{productController.keepProduct()}">
+							<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.productSelect}" for="productSelected" />
+								
+						</p:commandButton>
+
+					</h:panelGrid>
+					<!-- END OF PRODUCT SELECTORS -->
+
+					<!-- BEGIN OF PRODUCT DIALOGBOX -->
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+
+					<!-- END OF PRODUCT DIALOGBOX -->
+
+					<!-- BEGIN OF PROJECT SELECTORS -->
+					<h:outputText value="PROJECT" />
+					<h:outputText />
+
+					<h:panelGrid columns="3">
+						<p:commandButton icon="icon-plus"
+							oncomplete="PF('novoProjetoDialog').show()" />
+						<p:commandButton icon="icon-edit"
+							oncomplete="PF('novoProjetoDialog').show()" />
+						<p:commandButton icon="icon-less"
+							oncomplete="PF('novoProjetoDialog').show()" />
+					</h:panelGrid>
+					<!-- END OF PRODUCT SELECTORS -->
+
+				</h:panelGrid>
+				<!-- END OF PRODUCT AND PROJECT TREATMENT -->
+
+				<!-- BEGIN OF ALERTS -->
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1">
+						<h:outputText styleClass="bold" value="DAILY SCRUM" />
+						<h:outputText value="UNDONE" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<h:outputText styleClass="bold" value="REVIEW ACTIVITY" />
+						<h:outputText value="11 DAYS" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<h:outputText styleClass="bold" value="SPRINT REVIEW" />
+						<h:outputText value="11 DAYS" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<h:outputText styleClass="bold" value="SPRINT RETRO" />
+						<h:outputText value="11 DAYS" />
+					</h:panelGrid>
+				</h:panelGrid>
+				<!-- END OF ALERTS -->
+
+				<!-- BEGIN OF RELEASE AND SPRINT INFO -->
+				<h:panelGrid columns="4">
+					<h:graphicImage library="icons" name="release-icon.png" />
+					<h:panelGrid columns="1">
+						<h:outputText styleClass="bold" value="GLOBAL" />
+						<h:outputText value="87%" />
+						<h:outputText styleClass="bold" value="YOU" />
+						<h:outputText value="80%" />
+					</h:panelGrid>
+					<h:graphicImage library="icons" name="sprint-icon.png" />
+					<h:panelGrid columns="1">
+						<h:outputText styleClass="bold" value="GLOBAL" />
+						<h:outputText value="87%" />
+						<h:outputText styleClass="bold" value="YOU" />
+						<h:outputText value="80%" />
+					</h:panelGrid>
+				</h:panelGrid>
+				<!-- END OF RELEASE AND SPRINT INFO -->
+
+				<!-- BEGIN OF GAMIFICATION INFO -->
+				<h:panelGrid columns="2" style="text-align:right">
+					<h:outputLabel styleClass="bold">COLABORATION</h:outputLabel>
+					<h:outputText value="100%" />
+					<h:outputLabel styleClass="bold">PROACTIVITY</h:outputLabel>
+					<h:outputText value="100%" />
+					<h:outputLabel styleClass="bold">COMMUNICABILITY</h:outputLabel>
+					<h:outputText value="100%" />
+					<h:outputLabel styleClass="bold">EFFICIENCY</h:outputLabel>
+					<h:outputText value="100%" />
+				</h:panelGrid>
+				<!-- END OF GAMIFICATION INFO -->
+
+				<!-- BEGIN OF TEAM MEMBER INFO -->
+				<h:panelGrid columns="2">
+					<h:panelGrid columns="1" style="text-align: center">
+						<h:panelGrid columns="2">
+							<h:graphicImage library="icons" name="sono-icon.png" height="27" />
+							<h:graphicImage library="icons" name="anjo-icon.png" height="27" />
+						</h:panelGrid>
+						<h:graphicImage library="icons" name="sm-icon.png" height="55" />
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+						<h:graphicImage library="icons" name="user-icon.jpg" height="60" />
+						<p:commandButton value="SAIR" style="width:100%"
+							action="#{loginController.voltarTelaLogin()}" />
+					</h:panelGrid>
+				</h:panelGrid>
+
+
+				<!-- END OF TEAM MEMBER INFO -->
+			</h:panelGrid>
+		</h:form>
+	</ui:composition>
+	<!-- END DASHBOARD COMPOSITION  -->
+
+
+</h:body>
+</html>

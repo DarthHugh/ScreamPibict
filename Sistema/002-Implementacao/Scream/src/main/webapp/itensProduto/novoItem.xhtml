@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/app.xhtml">
+		<ui:define name="header-title">
+			SCREAM - NEW ITEM
+		</ui:define>
+		<ui:define name="content">
+			<p:growl id="mensagens" autoUpdate="true" showDetail="true" />
+			<h:form id="formularioNewItem" styleClass="center-hv">
+				<fieldset>
+					<legend>NEW ITEM</legend>
+					<h:panelGrid columns="2" cellpadding="1">
+
+						<!-- BEGIN OF DATATABLE OF ITENS BACKLOG RECORDED-->
+						<h:panelGrid columns="1" cellpadding="1">
+
+							<p:dataTable var="itensBacklog" widgetVar="itensTable"
+								emptyMessage="No registration found." rows="10" paginator="true"
+								rowsPerPageTemplate="5,10,15" style="width: 450px">
+
+								<p:column headerText="Title">
+									<h:outputText value="title" />
+								</p:column>
+
+								<p:column headerText="Status">
+									<h:outputText value="status" />
+								</p:column>
+
+								<p:column headerText="Sprint's">
+									<h:outputText value="sprints" />
+								</p:column>
+
+								<p:column headerText="Approved?">
+									<h:outputText value="approved" />
+								</p:column>
+
+							</p:dataTable>
+
+						</h:panelGrid>
+						<!-- END OF DATATABLE OF ITENS BACKLOG -->
+
+						<!-- BEGIN OF NEW ITEM BACKLOG FIELDS -->
+						<h:panelGrid columns="1" cellpadding="1">
+
+							<h:panelGrid columns="2" cellpadding="1">
+
+								<h:panelGrid columns="1" cellpadding="1">
+
+									<h:outputLabel for="titulo" value="Title: " />
+									<p:inputText id="titulo" maxlength="38" size="38" />
+
+									<h:outputLabel for="status-kanban" value="Status Kanban: " />
+									<p:selectOneMenu id="status-kanban" style="width: 120px">
+										<f:selectItem itemLabel="select status" itemValue="" />
+										<f:selectItems value="#" var="produto" itemLabel="#" />
+									</p:selectOneMenu>
+
+									<h:outputLabel value="Approved: " />
+									<p:selectBooleanCheckbox />
+
+									<h:outputLabel value="Comments: " />
+									<p:inputTextarea rows="5" cols="35" queryDelay="750"
+										minQueryLength="4" />
+								</h:panelGrid>
+
+								<h:panelGrid columns="1" cellpadding="1">
+
+									<h:outputLabel value="Description: " />
+									<p:inputTextarea rows="5" cols="35" queryDelay="750"
+										minQueryLength="4" />
+
+									<h:outputLabel value="Realization Date: " />
+									<p:inputText maxlength="38" size="38" />
+
+									<h:outputLabel value="Feedback: " />
+									<p:inputTextarea rows="5" cols="35" queryDelay="750"
+										minQueryLength="4" />
+
+								</h:panelGrid>
+
+							</h:panelGrid>
+
+							<h:panelGrid styleClass="pgregistro" columns="2"
+								style="float: right">
+								<p:commandButton id="save" value="Save" ajax="false" />
+								<p:button value="Cancel" />
+							</h:panelGrid>
+						</h:panelGrid>
+						<!-- END OF NEW ITEM BACKLOG FIELDS -->
+
+					</h:panelGrid>
+				</fieldset>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
