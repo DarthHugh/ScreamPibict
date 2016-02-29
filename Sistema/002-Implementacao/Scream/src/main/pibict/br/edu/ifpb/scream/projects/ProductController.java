@@ -80,6 +80,17 @@ public class ProductController implements Serializable {
 		
 	}
 	
+	public boolean checkProduct(){
+		keepProduct();
+		System.out.println("Está checando");
+		if (validarProduto(product)){
+			System.out.println("está falso");
+			return false;}
+			
+		System.out.println("está verdadeiro");
+		return true;
+	}
+	
 	public void keepProduct(){
 		contexto.getExternalContext().getSessionMap().put("productSelected", productSelect);
 	}

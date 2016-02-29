@@ -6,14 +6,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
-import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.scream.projects.Product;
-import br.edu.ifpb.scream.projects.ProductController;
 import br.edu.ifpb.scream.projects.ProdutoService;
-import br.edu.ifpb.scream.projects.dao.ProductDAO;
 
 /**
  * 

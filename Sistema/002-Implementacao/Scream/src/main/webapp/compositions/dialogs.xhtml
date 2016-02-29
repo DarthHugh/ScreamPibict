@@ -67,13 +67,14 @@
  			
  			<!-- BEGIN OF DELETE PRODUCT DIALOG -->
  			<p:dialog id="deleteProductDialog" header="Apagar Produto"
- 				widgetVar="deleteProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
- 				<p:panelGrid columns="2">
+ 				widgetVar="deleteProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" 
+ 				minHeight="100" minWidth="100" >
+ 				<h:panelGrid columns="1"  >
  					
- 					<p:outputLabel value="#{productController.productSelect.name}" />
- 					<p:outputLabel value="#{productController.productSelect.description}" />
+ 					<h:outputText value="#{productController.productSelect.name}" style="font-weight:bold" />
+ 					<h:outputText value="#{productController.productSelect.description}" />
  	
- 				</p:panelGrid>
+ 				</h:panelGrid>
   
  				<p:commandButton id="deleteProduct" value="Apagar" icon="ui-icon-disk"
  					action="#{productController.delete}"
