@@ -38,6 +38,8 @@ public class ProductController implements Serializable {
 
 	private Product product;
 
+	private Boolean productValitator;
+
 	private Product productSelect;
 
 	private List<Product> listProduto;
@@ -81,19 +83,25 @@ public class ProductController implements Serializable {
 	}
 	
 	public boolean checkProduct(){
-		keepProduct();
 		System.out.println("Está checando");
-		if (validarProduto(product)){
-			System.out.println("está falso");
-			return false;}
+		if (!validarProduto(product)){
+			System.out.println("está verdadeiro");
+			setProductValitator(true);
+			return true;}
+		System.out.println("está falso");
 			
-		System.out.println("está verdadeiro");
-		return true;
+		return false;
 	}
 	
 	public void keepProduct(){
 		contexto.getExternalContext().getSessionMap().put("productSelected", productSelect);
+		productSelect= product;
+		System.out.println("Product Selected: "+productSelect.getName());
+		System.out.println("Product: "+product.getName());
+		
 	}
+	
+	
 	
 
 	public void editar() {
@@ -205,6 +213,13 @@ public class ProductController implements Serializable {
 		this.productSelect = produtoSelect;
 	}
 	
+	public Boolean getProductValitator() {
+		return productValitator;
+	}
+
+	public void setProductValitator(Boolean productValitator) {
+		this.productValitator = productValitator;
+	}
 	
 
 //	public ItemProductBacklog getItemProductBacklog() {

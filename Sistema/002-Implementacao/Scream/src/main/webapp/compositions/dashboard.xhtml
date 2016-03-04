@@ -11,10 +11,10 @@
 	<!-- BEGIN DASHBOARD COMPOSITION -->
 	<ui:composition>
 		<h:form id="formDashboard">
-		
-		<p:growl id="message" showDetail="true" />
-		
-			<h:panelGrid columns="5"
+
+			<p:growl id="message" showDetail="true" />
+
+			<h:panelGrid columns="5" id="panelDashboardId"
 				columnClasses="dashbd-product-project, dashbd-alerts, dashbd-sprint-release-info,
 	dashbd-gamification-info, dashbd-team-member-info">
 
@@ -25,33 +25,42 @@
 					<h:outputText />
 					<h:selectOneMenu id="product" value="#{productController.product}"
 						converter="#{productConverter}" style="width:145px">
+						<p:ajax listener="#{productController.keepProduct()}"
+							update="editProductButton"><!--  -->
+							<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.productSelect}"
+								for="productSelected" />
+						</p:ajax>
 						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}"
 							noSelectionOption="true" />
-						<p:ajax listener="#{productController.checkProduct()}" update="editProductButton"  />
 						<f:selectItems value="#{productController.listProduto}"
 							var="produtos" itemValue="#{produtos}"
 							itemLabel="#{produtos.name}" />
 					</h:selectOneMenu>
-					
-					<h:panelGrid columns="3"> <!-- id="editProductButton" -->
+
+					<h:panelGrid columns="3"
+						id="editProductButton" >
 						<!-- BUTTON NEW PRODUCT -->
 						<p:commandButton icon="icon-plus"
 							onclick="PF('novoProdutoDialog').show()" />
-							
+
 						<!-- BUTTON EDIT PRODUCT -->
-						<p:commandButton icon="icon-edit" 
+						<p:commandButton icon="icon-edit"
 							oncomplete="PF('editProductDialog').show()" update=":formDialog"
-							action="#{productController.keepProduct()}"><!--  readonly="#{productController.checkProduct()}"-->
-							<f:setPropertyActionListener value="#{productController.product}"
-								target="#{productController.productSelect}"	for="productSelected" />
-						</p:commandButton>
-						
-						<!-- BUTTON DELETE PRODUCT -->
-						<p:commandButton icon="icon-less" oncomplete="PF('deleteProductDialog').show()" update=":formDialog"
 							action="#{productController.keepProduct()}" >
 							<f:setPropertyActionListener value="#{productController.product}"
-								target="#{productController.productSelect}" for="productSelected" />
-								
+								target="#{productController.productSelect}"
+								for="productSelected" />
+						</p:commandButton>
+
+						<!-- BUTTON DELETE PRODUCT -->
+						<p:commandButton icon="icon-less"
+							oncomplete="PF('deleteProductDialog').show()"
+							update=":formDialog" action="#{productController.keepProduct()}">
+							<f:setPropertyActionListener value="#{productController.product}"
+								target="#{productController.productSelect}"
+								for="productSelected" />
+
 						</p:commandButton>
 
 					</h:panelGrid>
