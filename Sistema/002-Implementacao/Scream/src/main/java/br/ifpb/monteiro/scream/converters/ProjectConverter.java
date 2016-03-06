@@ -9,24 +9,23 @@ import javax.faces.convert.ConverterException;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifpb.scream.projects.Product;
-import br.edu.ifpb.scream.projects.ProductService;
+import br.edu.ifpb.scream.projects.Project;
+import br.edu.ifpb.scream.projects.ProjectService;
 
 /**
  * 
- * @author Maurício
- * This class is responsible to converter a product to a SelectItems type
+ * @author Mauricio  Aguiar
+ * This class is responsible to converter a project to a SelectItems type
  * to work with selectOneMenu function
  *
  */
-//@FacesConverter(forClass=Product.class)
 @Named
 @ApplicationScoped
-public class ProductConverter implements Converter {
+public class ProjectConverter implements Converter {
 
 	
 	@Inject
-	private ProductService service;
+	private ProjectService service;
 	
 	/**
 	 * method recover a object from a object string key on context 
@@ -40,12 +39,12 @@ public class ProductConverter implements Converter {
 	            return null;
 	            
 	       }try{
-	    	   Product p = service.find(Long.valueOf(value));
+	    	   Project p = service.find(Long.valueOf(value));
 	    	   return p;
 	    	   
 	    	   
 	       }catch(NumberFormatException e){
-	    	   throw new ConverterException(new FacesMessage(String.format("%s is not a valid Product ID", value)), e);
+	    	   throw new ConverterException(new FacesMessage(String.format("projeto não válido", value)), null);
 	       }
 	       
 	    }
@@ -56,7 +55,7 @@ public class ProductConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		System.out.println("Passou aqui getAsString");
-		return (value instanceof Product) ? ((Product) value).getId().toString() : null;
+		return (value instanceof Project) ? ((Project) value).getId().toString() : null;
 	}
 
 }

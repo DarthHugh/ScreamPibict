@@ -11,9 +11,8 @@ import br.ifpb.monteiro.scream.util.jpa.Transactional;
 
 /**
  *
- * @author Mauricio
+ * @author Mauricio Aguiar
  */
-
 public class ProductDAO extends GenericDAO<Product>{
 
 	private static final long serialVersionUID = 1L;

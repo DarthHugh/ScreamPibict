@@ -12,7 +12,7 @@ import javax.inject.Inject;
  *
  * @author Hugo Correia
  */
-public class ProdutoService {
+public class ProductService {
     
     @Inject
     private ProductDAO productDAO;

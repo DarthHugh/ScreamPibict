@@ -19,27 +19,28 @@
 	dashbd-gamification-info, dashbd-team-member-info">
 
 				<!-- BEGIN OF PRODUCT AND PROJECT TREATMENT -->
-				<h:panelGrid columns="2">
+				<h:panelGrid columns="2" id="projectProductGrid">
 					<!-- BEGIN OF PRODUCT SELECTORS -->
-					<h:outputText value="PRODUCT" />
-					<h:outputText />
-					<h:selectOneMenu id="product" value="#{productController.product}"
-						converter="#{productConverter}" style="width:145px">
-						<p:ajax listener="#{productController.keepProduct()}"
-							update="editProductButton"><!--  -->
-							<f:setPropertyActionListener value="#{productController.product}"
-								target="#{productController.productSelect}"
-								for="productSelected" />
-						</p:ajax>
-						<f:selectItem itemLabel="Selecione um produto" itemValue="#{null}"
-							noSelectionOption="true" />
-						<f:selectItems value="#{productController.listProduto}"
-							var="produtos" itemValue="#{produtos}"
-							itemLabel="#{produtos.name}" />
-					</h:selectOneMenu>
-
-					<h:panelGrid columns="3"
-						id="editProductButton" >
+					<h:panelGrid columns="1">
+						<h:outputText value="PRODUCT" />
+						<h:selectOneMenu id="product"
+							value="#{dashboardController.productSelect}"
+							converter="#{productConverter}" style="width:145px">
+							<p:ajax listener="#{dashboardController.onChangeProduct()}"
+								update="project">
+								<f:setPropertyActionListener
+									value="#{dashboardController.productSelect}"
+									target="#{dashboardController.productSelect}"
+									for="productSelected" />
+							</p:ajax>
+							<f:selectItem itemLabel="Selecione um produto"
+								itemValue="#{null}" noSelectionOption="true" />
+							<f:selectItems value="#{dashboardController.listProduct}"
+								var="produtos" itemValue="#{produtos}"
+								itemLabel="#{produtos.name}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
+					<h:panelGrid columns="3">
 						<!-- BUTTON NEW PRODUCT -->
 						<p:commandButton icon="icon-plus"
 							onclick="PF('novoProdutoDialog').show()" />
@@ -47,18 +48,21 @@
 						<!-- BUTTON EDIT PRODUCT -->
 						<p:commandButton icon="icon-edit"
 							oncomplete="PF('editProductDialog').show()" update=":formDialog"
-							action="#{productController.keepProduct()}" >
-							<f:setPropertyActionListener value="#{productController.product}"
-								target="#{productController.productSelect}"
+							action="#{dashboardController.keepProduct()}">
+							<f:setPropertyActionListener
+								value="#{dashboardController.productSelect}"
+								target="#{dashboardController.productSelect}"
 								for="productSelected" />
 						</p:commandButton>
 
 						<!-- BUTTON DELETE PRODUCT -->
 						<p:commandButton icon="icon-less"
 							oncomplete="PF('deleteProductDialog').show()"
-							update=":formDialog" action="#{productController.keepProduct()}">
-							<f:setPropertyActionListener value="#{productController.product}"
-								target="#{productController.productSelect}"
+							update=":formDialog"
+							action="#{dashboardController.keepProduct()}">
+							<f:setPropertyActionListener
+								value="#{dashboardController.productSelect}"
+								target="#{dashboardController.productSelect}"
 								for="productSelected" />
 
 						</p:commandButton>
@@ -66,28 +70,48 @@
 					</h:panelGrid>
 					<!-- END OF PRODUCT SELECTORS -->
 
-					<!-- BEGIN OF PRODUCT DIALOGBOX -->
-
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						<p:commandButton value="Sim" type="button"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-						<p:commandButton value="Não" type="button"
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-					</p:confirmDialog>
-
-					<!-- END OF PRODUCT DIALOGBOX -->
-
 					<!-- BEGIN OF PROJECT SELECTORS -->
-					<h:outputText value="PROJECT" />
-					<h:outputText />
+					<h:panelGrid columns="1">
+						<h:outputText value="PROJECT" />
 
+						<h:selectOneMenu id="project"
+							value="#{dashboardController.projectSelect}"
+							converter="#{projectConverter}" style="width:145px">
+							<p:ajax listener="#{dashboardController.onChangeProject}" update="message">
+								<f:setPropertyActionListener
+									value="#{dashboardController.projectSelect}"
+									target="#{dashboardController.projectSelect}"
+									for="projectSelected"/>
+							</p:ajax>
+							<f:selectItem itemLabel="Selecione um projeto"
+								itemValue="#{null}" noSelectionOption="true" />
+							<f:selectItems value="#{dashboardController.listProject}"
+								var="projects" itemValue="#{projects}"
+								itemLabel="#{projects.title}" />
+						</h:selectOneMenu>
+					</h:panelGrid>
 					<h:panelGrid columns="3">
 						<p:commandButton icon="icon-plus"
-							oncomplete="PF('novoProjetoDialog').show()" />
+							onclick="PF('newProjectDialog').show()" />
+
 						<p:commandButton icon="icon-edit"
-							oncomplete="PF('novoProjetoDialog').show()" />
+							oncomplete="PF('editProjectDialog').show()" update=":formDialog"
+							action="#{dashboardController.keepProject()}">
+							<f:setPropertyActionListener
+								value="#{dashboardController.projectSelect}"
+								target="#{dashboardController.projectSelect}"
+								for="projectSelected" />
+						</p:commandButton>
+
 						<p:commandButton icon="icon-less"
-							oncomplete="PF('novoProjetoDialog').show()" />
+							oncomplete="PF('deleteProjectDialog').show()"
+							update=":formDialog"
+							action="#{dashboardController.keepProject()}">
+							<f:setPropertyActionListener
+								value="#{dashboardController.projectSelect}"
+								target="#{dashboardController.projectSelect}"
+								for="projectSelected" />
+						</p:commandButton>
 					</h:panelGrid>
 					<!-- END OF PRODUCT SELECTORS -->
 
@@ -169,7 +193,6 @@
 		</h:form>
 	</ui:composition>
 	<!-- END DASHBOARD COMPOSITION  -->
-
 
 </h:body>
 </html>

@@ -1,12 +1,15 @@
 package br.edu.ifpb.scream.projects;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,8 +32,8 @@ public class Product implements Serializable{
     @Column(nullable = false, length = 200, name = "description")
     private String description;    
     
-//    @OneToMany(mappedBy="produto", cascade=CascadeType.ALL)
-//    private List<ItemProductBacklog> listItensProduct;
+    @OneToMany(mappedBy="product", cascade=CascadeType.ALL)
+    private List<Project> listProjects;
     
 //    @OneToMany(mappedBy="produto", cascade=CascadeType.ALL)
 //    private List<Projeto> listProjeto;
@@ -79,7 +82,15 @@ public class Product implements Serializable{
             : (other == this);
     }
 
-    @Override
+    public List<Project> getListProjects() {
+		return listProjects;
+	}
+
+	public void setListProjects(List<Project> listProjects) {
+		this.listProjects = listProjects;
+	}
+
+	@Override
     public int hashCode() {
         return (id != null) 
             ? (getClass().hashCode() + id.hashCode())
