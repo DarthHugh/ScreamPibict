@@ -20,17 +20,17 @@
 					<p:outputLabel value="Nome" for="novoNome" />
 					<p:inputText id="novoNome" maxlength="50" 
 						placeholder="Nome do Produto"
-						value="#{dashBoardController.product.name}" />
+						value="#{dashboardController.product.name}" />
 
 					<p:outputLabel id="novaDescricao" value="Descrição" />
 					<p:inputTextarea rows="5" cols="30"
-						value="#{dashBoardController.product.description}" queryDelay="750"
+						value="#{dashboardController.product.description}" queryDelay="750"
 						minQueryLength="4" />
 
 				</p:panelGrid>
 
 				<p:commandButton id="novoProduto" value="Salvar" icon="ui-icon-disk"
-					action="#{dashBoardController.createProduct}"
+					action="#{dashboardController.createProduct}"
 					oncomplete="PF('novoProdutoDialog').hide()">
 				</p:commandButton>
 			</p:dialog>
@@ -41,26 +41,26 @@
  				widgetVar="editProductDialog" modal="true" resizable="false" draggable="true" appendToBody="true" >
  				<p:panelGrid columns="2">
 
- 					<p:inputText value="#{dashBoardController.productSelect.id}" for="id" rendered="false"/>
+ 					<p:inputText value="#{dashboardController.productSelect.id}" for="id" rendered="false"/>
  					
  					<p:outputLabel value="Nome" for="editNome" />
  					<p:inputText id="editNome" maxlength="50"
  						placeholder="Nome do Produto"
- 						value="#{dashBoardController.productSelect.name}" />
+ 						value="#{dashboardController.productSelect.name}" />
  
  					<p:outputLabel id="editDescription" value="Descrição" />
  					<p:inputTextarea rows="5" cols="30"
- 						value="#{dashBoardController.productSelect.description}" queryDelay="750"
+ 						value="#{dashboardController.productSelect.description}" queryDelay="750"
  						minQueryLength="4" />
  
  				</p:panelGrid>
   
  				<p:commandButton id="editProduct" value="Salvar" icon="ui-icon-disk"
- 					action="#{dashBoardController.editProduct}"
+ 					action="#{dashboardController.editProduct}"
  					oncomplete="PF('editProductDialog').hide()" update=":formDashboard">
  					
- 					<f:setPropertyActionListener value="#{dashBoardController.productSelect}"
-								target="#{dashBoardController.productSelect}"/>
+ 					<f:setPropertyActionListener value="#{dashboardController.productSelect}"
+								target="#{dashboardController.productSelect}"/>
  				</p:commandButton>
  			</p:dialog>
  			<!-- END OF EDIT PRODUCT DIALOG -->
@@ -71,16 +71,16 @@
  				minHeight="100" minWidth="100" >
  				<h:panelGrid columns="1"  >
  					
- 					<h:outputText value="#{dashBoardController.productSelect.name}" style="font-weight:bold" />
- 					<h:outputText value="#{dashBoardController.productSelect.description}" />
+ 					<h:outputText value="#{dashboardController.productSelect.name}" style="font-weight:bold" />
+ 					<h:outputText value="#{dashboardController.productSelect.description}" />
  	
  				</h:panelGrid>
   
  				<p:commandButton id="deleteProduct" value="Apagar" icon="ui-icon-disk"
- 					action="#{dashBoardController.deleteProduct}"
+ 					action="#{dashboardController.deleteProduct}"
  					oncomplete="PF('deleteProductDialog').hide()" update=":formDashboard">
- 					<f:setPropertyActionListener value="#{dashBoardController.productSelect}"
-								target="#{dashBoardController.productSelect}"/>
+ 					<f:setPropertyActionListener value="#{dashboardController.productSelect}"
+								target="#{dashboardController.productSelect}"/>
  				</p:commandButton>
  				
  			</p:dialog>
@@ -94,66 +94,66 @@
 					<p:outputLabel value="Titulo" for="newTitle" />
 					<p:inputText id="newTitle" maxlength="30" 
 						placeholder="Nome do Titulo"
-						value="#{dashBoardController.project.title}" />
+						value="#{dashboardController.project.title}" />
 
 					<p:outputLabel value="Tempo (dias)" for="newTimeBox" />
-					<p:inputText value="#{dashBoardController.project.timeBoxInDays}" 
+					<p:inputText value="#{dashboardController.project.timeBoxInDays}" 
 					maxlength="4" id="newTimeBox"/>
 
 				</p:panelGrid>
 
 				<p:commandButton id="newProject" value="Salvar" icon="ui-icon-disk"
-					action="#{dashBoardController.createProject}" update=":formDashboard"
+					action="#{dashboardController.createProject}" update=":formDashboard"
 					oncomplete="PF('newProjectDialog').hide()">
 				</p:commandButton>
 			</p:dialog>
 			<!-- END OF NEW PROJECT DIALOG -->
 			
-			<!-- BEGIN OF EDIT PROJECT DIALOG -->
+			<!--BEGIN OF EDIT PROJECT DIALOG -->
 			
-			<p:dialog header="Editar Projeto" widgetVar="editProjectDialog" id="editProjectDialog"
-				modal="true" resizable="false" draggable="true" >
-				<p:panelGrid columns="2">
+<!-- 			<p:dialog header="Editar Projeto" widgetVar="editProjectDialog" id="editProjectDialog" -->
+<!-- 				modal="true" resizable="false" draggable="true" > -->
+<!-- 				<p:panelGrid columns="2"> -->
 
-					<p:outputLabel value="Titulo" />
-					<p:inputText id="editTitle" maxlength="30" 
-						placeholder="Nome do Titulo"
-						value="#{dashBoardController.projectSelect.title}" />
+<!-- 					<p:outputLabel value="Titulo" /> -->
+<!-- 					<p:inputText id="editTitle" maxlength="30"  -->
+<!-- 						placeholder="Nome do Titulo" -->
+<!-- 						value="#{dashboardController.projectSelect.title}" /> -->
 
-					<p:outputLabel value="Tempo (dias)" for="editTimeBox" />
-					<p:inputText value="#{dashBoardController.projectSelect.timeBoxInDays}" 
-					maxlength="4" id="editTimeBox"/>
+<!-- 					<p:outputLabel value="Tempo (dias)" for="editTimeBox" /> -->
+<!-- 					<p:inputText value="#{dashboardController.projectSelect.timeBoxInDays}"  -->
+<!-- 					maxlength="4" id="editTimeBox"/> -->
 
-				</p:panelGrid>
+<!-- 				</p:panelGrid> -->
 
-				<p:commandButton id="editProject" value="Salvar" icon="ui-icon-disk"
-					action="#{dashBoardController.updateProject}"
-					oncomplete="PF('editProjectDialog').hide()">
-				</p:commandButton>
-			</p:dialog>
+<!-- 				<p:commandButton id="editProject" value="Salvar" icon="ui-icon-disk" -->
+<!-- 					action="#{dashboardController.updateProject}" -->
+<!-- 					oncomplete="PF('editProjectDialog').hide()"> -->
+<!-- 				</p:commandButton> -->
+<!-- 			</p:dialog> -->
 			
-			<!-- END OF EDIT PROJECT DIALOG -->
+				<!-- END OF EDIT PROJECT DIALOG -->
 			
-			<!-- BEGIN OF DELETE PROJECT DIALOG -->
+				<!-- BEGIN OF DELETE PROJECT DIALOG -->
 			
- 			<p:dialog id="deleteProjectDialog" header="Apagar Projeto"
- 				widgetVar="deleteProjectDialog" modal="true" resizable="false" draggable="true" appendToBody="true" 
- 				minHeight="100" minWidth="100" >
- 				<h:panelGrid columns="1"  >
+<!--  			<p:dialog id="deleteProjectDialog" header="Apagar Projeto" -->
+<!--  				widgetVar="deleteProjectDialog" modal="true" resizable="false" draggable="true" appendToBody="true"  -->
+<!--  				minHeight="100" minWidth="100" > -->
+<!--  				<h:panelGrid columns="1"  > -->
  					
- 					<h:outputText value="#{dashBoardController.projectSelect.title}" style="font-weight:bold" />
+<!--  					<h:outputText value="#{dashboardController.projectSelect.title}" style="font-weight:bold" /> -->
  	
- 				</h:panelGrid>
+<!--  				</h:panelGrid> -->
   
- 				<p:commandButton id="deleteProject" value="Apagar" icon="ui-icon-disk"
- 					action="#{dashBoardController.deleteProject}"
- 					oncomplete="PF('deleteProjectDialog').hide()" update=":formDashboard">
- 					<f:setPropertyActionListener value="#{dashBoardController.projectSelect}"
-								target="#{dashBoardController.projectSelect}"/>
- 				</p:commandButton>
+<!--  				<p:commandButton id="deleteProject" value="Apagar" icon="ui-icon-disk" -->
+<!--  					action="#{dashboardController.deleteProject}" -->
+<!--  					oncomplete="PF('deleteProjectDialog').hide()" update=":formDashboard"> -->
+<!--  					<f:setPropertyActionListener value="#{dashboardController.projectSelect}" -->
+<!-- 								target="#{dashboardController.projectSelect}"/> -->
+<!--  				</p:commandButton> -->
  				
- 			</p:dialog>
- 			<!-- END OF DELETE PROJECT DIALOG -->
+<!--  			</p:dialog> -->
+		<!-- END OF DELETE PROJECT DIALOG -->
 			
 		</h:form>
 	</ui:composition>

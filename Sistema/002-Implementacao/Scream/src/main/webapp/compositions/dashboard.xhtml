@@ -94,24 +94,24 @@
 						<p:commandButton icon="icon-plus"
 							onclick="PF('newProjectDialog').show()" />
 
-						<p:commandButton icon="icon-edit"
-							oncomplete="PF('editProjectDialog').show()" update=":formDialog"
-							action="#{dashboardController.keepProject()}">
-							<f:setPropertyActionListener
-								value="#{dashboardController.projectSelect}"
-								target="#{dashboardController.projectSelect}"
-								for="projectSelected" />
-						</p:commandButton>
+<!-- 						<p:commandButton icon="icon-edit" -->
+<!-- 							oncomplete="PF('editProjectDialog').show()" update=":formDialog" -->
+<!-- 							action="#{dashboardController.keepProject()}"> -->
+<!-- 							<f:setPropertyActionListener -->
+<!-- 								value="#{dashboardController.projectSelect}" -->
+<!-- 								target="#{dashboardController.projectSelect}" -->
+<!-- 								for="projectSelected" /> -->
+<!-- 						</p:commandButton> -->
 
-						<p:commandButton icon="icon-less"
-							oncomplete="PF('deleteProjectDialog').show()"
-							update=":formDialog"
-							action="#{dashboardController.keepProject()}">
-							<f:setPropertyActionListener
-								value="#{dashboardController.projectSelect}"
-								target="#{dashboardController.projectSelect}"
-								for="projectSelected" />
-						</p:commandButton>
+<!-- 						<p:commandButton icon="icon-less" -->
+<!-- 							oncomplete="PF('deleteProjectDialog').show()" -->
+<!-- 							update=":formDialog" -->
+<!-- 							action="#{dashboardController.keepProject()}"> -->
+<!-- 							<f:setPropertyActionListener -->
+<!-- 								value="#{dashboardController.projectSelect}" -->
+<!-- 								target="#{dashboardController.projectSelect}" -->
+<!-- 								for="projectSelected" /> -->
+<!-- 						</p:commandButton> -->
 					</h:panelGrid>
 					<!-- END OF PRODUCT SELECTORS -->
 
