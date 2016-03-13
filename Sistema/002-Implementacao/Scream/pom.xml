@@ -40,6 +40,13 @@
 			<type>jar</type>
 		</dependency>
 
+		<!-- API Java Mail para envio de emails -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-clean-plugin</artifactId>
